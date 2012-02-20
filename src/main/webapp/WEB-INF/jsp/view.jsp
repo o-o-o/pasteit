@@ -10,7 +10,7 @@
     <meta name="author" content="Jun Enomoto"></meta>
     <title>Paste it!</title>
 
-    <link href="/public/bootstrap/css/bootstrap.min.css" rel="stylesheet"></link>
+    <link href="/public/bootstrap/css/simplex.bootstrap.min.css" rel="stylesheet"></link>
     <link href="/public/style.css" rel="stylesheet"></link>
     <link href="/public/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet"></link>
 
@@ -30,13 +30,22 @@
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"></a><a class="brand" href="#">Paste it!</a>
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"></a><a class="brand" href="/">Paste it!</a>
           <div class="nav-collapse">
             <ul class="nav">
-              <li><a href="/"><span class="icon-edit icon-white"></span> Home</a></li>
-              <li><a href="/about"><span class="icon-info-sign icon-white"></span> About</a></li>
+              <li><a href="/"><span class="icon-edit"></span> Home</a></li>
+              <li><a href="/about"><span class="icon-info-sign"></span> About</a></li>
             </ul>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="span10"><p></p></div>
+        <div class="span2">
+        	<a id="copyIt" class="btn btn-large btn-primary" href="#"><span class="icon-share icon-white"></span> Copy it!</a>
         </div>
       </div>
     </div>
@@ -44,7 +53,7 @@
     <div id="editor"><c:out value="${text}" escapeXml="true" /></div>
     <div id="location">
       <a id="message" href="${fn:escapeXml(location)}"><c:out value="${location}" escapeXml="true" /></a>
-      <a id="copy" class="btn" href="#"><span class="icon-inbox"></span> copy</a>
+      <a id="copy" class="btn" href="#"><span class="icon-inbox"></span> copy this URL</a>
     </div>
 
     <footer>
@@ -61,11 +70,21 @@
     var editor = ace.edit('editor');
     editor.setReadOnly(true);
     ZeroClipboard.setMoviePath('/public/zeroclipboard/ZeroClipboard.swf');
-    var clip = new ZeroClipboard.Client();
-    clip.glue('copy');
-    clip.setHandCursor(true);
-    clip.addEventListener('onMouseDown', function(){
-      clip.setText($('#message').attr('href'));
+    var copyUrl = new ZeroClipboard.Client();
+    copyUrl.glue('copy');
+    copyUrl.setHandCursor(true);
+    copyUrl.addEventListener('onMouseDown', function(){
+      copyUrl.setText($('#message').attr('href'));
+    });
+    var copyCode = new ZeroClipboard.Client();
+    copyCode.glue('copyIt');
+    copyCode.setHandCursor(true);
+    copyCode.addEventListener('onMouseDown', function(){
+      copyCode.setText(editor.getSession().getValue());
+    });
+    $(window).resize(function(){
+      copyUrl.reposition();
+      copyCode.reposition();
     });
   });
 })(jQuery);

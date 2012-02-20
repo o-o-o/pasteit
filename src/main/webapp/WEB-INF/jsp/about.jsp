@@ -8,7 +8,7 @@
     <meta name="author" content="Jun Enomoto"></meta>
     <title>Paste it!</title>
 
-    <link href="/public/bootstrap/css/bootstrap.min.css" rel="stylesheet"></link>
+    <link href="/public/bootstrap/css/simplex.bootstrap.min.css" rel="stylesheet"></link>
     <link href="/public/style.css" rel="stylesheet"></link>
     <link href="/public/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet"></link>
 
@@ -28,11 +28,11 @@
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"></a><a class="brand" href="#">Paste it!</a>
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"></a><a class="brand" href="/">Paste it!</a>
           <div class="nav-collapse">
             <ul class="nav">
-              <li><a href="/"><span class="icon-edit icon-white"></span> Home</a></li>
-              <li class="active"><a href="/about"><span class="icon-info-sign icon-white"></span> About</a></li>
+              <li><a href="/"><span class="icon-edit"></span> Home</a></li>
+              <li class="active"><a href="/about"><span class="icon-info-sign"></span> About</a></li>
             </ul>
           </div>
         </div>
