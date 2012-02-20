@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Paste it!</title>
+    <link href="/r/style.css" rel="stylesheet" type="text/css" />
+    <link href="/r/prettify.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="/r/prettify.js"></script>
+    <script type="text/javascript" src="/r/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript">
+$(function(){
+	$('#preview').click(function(){
+		var cp = $('#codePreview');
+		cp.text($('#q').val() || '\n\n\n\n\n\n\n\n\n\n\n                                  (* ゜∋゜)< これはPreview画面だ!!');
+		prettyPrint();
+		cp.fadeIn('slow');
+		cp.click(function(){
+			$(this).fadeOut('slow');
+		});
+	});
+});
+    </script>
+  </head>
+  <body>
+    <div id="topPan">
+      <div id="logo"><a href="/"><img src="/r/logo.gif" title="Paste It!" alt="Paste It!" width="67" height="73" border="0" /></a></div>
+      <h1>Paste it!</h1>
+      <h2>paste your code.</h2>
+      <form action="/t" method="post" onsubmit="return $('#q').val() != ''">
+        <textarea id="q" name="q" type="text" title="paste your code here!"></textarea>
+        <input name="go" type="submit" class="button" value="Go!" title="Go!" /><br />
+        <input id="preview" name="preview" type="button" class="button" value="?" title="Preview!" />
+      </form>
+    </div>
+    <pre id="codePreview" class="prettyprint"></pre>
+  </body>
+</html>

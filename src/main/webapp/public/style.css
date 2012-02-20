@@ -1,0 +1,41 @@
+body {
+  padding-top: 60px;
+}
+
+#message{
+  margin-top: 12px;
+  margin-left: 20px;
+  color: gray;
+}
+
+#editor {
+  width: 80%;
+  height: 420px;
+  margin-top: 20px;
+  margin-left: 10%;
+  margin-right: 10%;
+  border: 1px solid gray;
+}
+
+#location {
+  text-align: right;
+  margin-top: 460px;
+  margin-left: 10%;
+  width: 80%;
+}
+
+footer {
+  font-size: x-small;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  margin-left: 10%;
+  border-top: 1px solid silver;
+  width: 80%;
+  text-align: right;
+  position: fixed;
+  top: 600px;
+}
+
+#footer-logo {
+  color: silver;
+}
