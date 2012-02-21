@@ -43,9 +43,10 @@
 
     <div class="container">
       <div class="row">
-        <div class="span10"><p></p></div>
-        <div class="span2">
-        	<a id="copyIt" class="btn btn-large btn-primary" href="#"><span class="icon-share icon-white"></span> Copy it!</a>
+        <div class="span9"><p></p></div>
+        <div class="span3">
+        	<a id="copyThis" class="btn btn-large btn-primary" href="#"><span class="icon-share-alt icon-white"></span> Copy this!</a>
+        	<a id="download" class="btn btn-large btn-primary" href="/d/${fn:escapeXml(fileName)}"><span class="icon-download-alt icon-white"></span> Download</a>
         </div>
       </div>
     </div>
@@ -53,11 +54,11 @@
     <div id="editor"><c:out value="${text}" escapeXml="true" /></div>
     <div id="location">
       <a id="message" href="${fn:escapeXml(location)}"><c:out value="${location}" escapeXml="true" /></a>
-      <a id="copy" class="btn" href="#"><span class="icon-inbox"></span> copy this URL</a>
+      <a id="copy" class="btn" href="#"><span class="icon-share-alt"></span> copy this URL</a>
     </div>
 
     <footer>
-      <p><a id="footer-logo" href="/">Paste it!</a></p>
+      <p><a id="footer-logo" href="/about">Paste it!</a></p>
     </footer>
 
     <script src="/public/jquery/jquery-1.7.1.min.js"></script>
@@ -77,7 +78,7 @@
       copyUrl.setText($('#message').attr('href'));
     });
     var copyCode = new ZeroClipboard.Client();
-    copyCode.glue('copyIt');
+    copyCode.glue('copyThis');
     copyCode.setHandCursor(true);
     copyCode.addEventListener('onMouseDown', function(){
       copyCode.setText(editor.getSession().getValue());

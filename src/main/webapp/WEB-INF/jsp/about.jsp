@@ -53,7 +53,7 @@
     </div>
 
     <footer>
-      <p><a id="footer-logo" href="/">Paste it!</a></p>
+      <p><a id="footer-logo" href="/about">Paste it!</a></p>
     </footer>
   </body>
 </html>

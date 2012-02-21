@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(urlPatterns = { "/t/*" })
-public class PasteItServlet extends HttpServlet {
+public class View extends HttpServlet {
 
     private static final long serialVersionUID = 6712349714840057898L;
 
@@ -58,6 +58,7 @@ public class PasteItServlet extends HttpServlet {
         }
         request.setAttribute("text", FileUtils.read(file)); //$NON-NLS-1$
         request.setAttribute("location", request.getRequestURL().toString()); //$NON-NLS-1$
+        request.setAttribute("fileName", file.getName()); //$NON-NLS-1$
         request.getRequestDispatcher("/WEB-INF/jsp/view.jsp").forward(request, response); //$NON-NLS-1$
     }
 }
