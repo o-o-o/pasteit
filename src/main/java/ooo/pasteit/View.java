@@ -16,7 +16,7 @@ public class View extends HttpServlet {
 
     private static final String STORAGE = "var"; //$NON-NLS-1$
 
-    private static final int MAX_CONTENT_LENGTH = 1024 * 1204; // 1M
+    private static final int MAX_CONTENT_LENGTH = 1024 * 1204 * 1024; // 1M
 
     private File storage;
 
