@@ -48,7 +48,7 @@
       </div>
       <div class="span3">
         <h2>Source</h2>
-        <a href="http://github.com/o-o-o/paste-it/">http://github.com/o-o-o/pasteit/</a>
+        <a href="http://github.com/o-o-o/pasteit/">http://github.com/o-o-o/pasteit/</a>
       </div>
     </div>
 

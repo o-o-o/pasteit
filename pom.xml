@@ -4,9 +4,9 @@
 	<groupId>ooo.pasteit</groupId>
 	<artifactId>pasteit</artifactId>
 	<packaging>war</packaging>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2</version>
 	<name>Paste it!</name>
-  <url>http://github.com/o-o-o/pasteit/</url>
+    <url>http://github.com/o-o-o/pasteit/</url>
 	<dependencies>
 		<dependency>
 			<groupId>org.apache.geronimo.specs</groupId>
