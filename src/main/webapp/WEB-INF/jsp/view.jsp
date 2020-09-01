@@ -30,7 +30,11 @@
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"></a><a class="brand" href="/">Paste it!</a>
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-list" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+            </svg>
+          </a><a class="brand" href="/">Paste it!</a>
           <div class="nav-collapse">
             <ul class="nav">
               <li><a href="/"><span class="icon-edit"></span> Home</a></li>
@@ -54,7 +58,7 @@
     <div id="editor"><c:out value="${text}" escapeXml="true" /></div>
     <div id="location">
       <a id="message" href="${fn:escapeXml(location)}"><c:out value="${location}" escapeXml="true" /></a>
-      <a id="copy" class="btn" href="#"><span class="icon-share-alt"></span> copy this URL</a>
+      <a id="copyUrl" class="btn" href="#"><span class="icon-share-alt"></span> copy this URL</a>
     </div>
 
     <footer>
@@ -64,29 +68,43 @@
     <script src="/public/jquery/jquery-1.7.1.min.js"></script>
     <script src="/public/bootstrap/js/bootstrap.min.js"></script>
     <script src="/public/ace/ace.js" type="text/javascript" charset="utf-8"></script>
-    <script src="/public/zeroclipboard/ZeroClipboard.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/public/clipboard.js/clipboard.min.js" type="text/javascript" charset="utf-8"></script>
     <script type="text/javascript">
 (function($){
   $(document).ready(function(){
     var editor = ace.edit('editor');
     editor.setReadOnly(true);
-    ZeroClipboard.setMoviePath('/public/zeroclipboard/ZeroClipboard.swf');
-    var copyUrl = new ZeroClipboard.Client();
-    copyUrl.glue('copy');
-    copyUrl.setHandCursor(true);
-    copyUrl.addEventListener('onMouseDown', function(){
-      copyUrl.setText($('#message').attr('href'));
+
+    var clipboardContent = new ClipboardJS('#copyThis', {
+        text: function(trigger) {
+            return editor.getSession().getValue();
+        }
     });
-    var copyCode = new ZeroClipboard.Client();
-    copyCode.glue('copyThis');
-    copyCode.setHandCursor(true);
-    copyCode.addEventListener('onMouseDown', function(){
-      copyCode.setText(editor.getSession().getValue());
+    var clipboardUrl = new ClipboardJS('#copyUrl', {
+        text: function(trigger) {
+            return $('#message').attr('href');
+        }
     });
-    $(window).resize(function(){
-      copyUrl.reposition();
-      copyCode.reposition();
+
+    // show success tooltips
+    $('#copyThis').tooltip({trigger: 'click', placement: 'bottom'});
+    $('#copyUrl').tooltip({trigger: 'click', placement: 'top'});
+    clipboardContent.on('success', function(e) {
+        setTooltip(e.trigger, 'Copied!');
+        hideTooltip(e.trigger);
     });
+    clipboardUrl.on('success', function(e) {
+        setTooltip(e.trigger, 'Copied!');
+        hideTooltip(e.trigger);
+    });
+    var setTooltip = function (btn, message) {
+        $(btn).attr('data-original-title', message).tooltip('show');
+    };
+    var hideTooltip = function (btn, message) {
+        setTimeout(function() {
+            $(btn).tooltip('hide').attr('data-original-title', "");
+        }, 1000);
+    };
   });
 })(jQuery);
     </script>
